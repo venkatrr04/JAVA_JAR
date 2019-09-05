@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.hcl.rubikbank.entity.BankData;
 
 @Repository
-public interface BankDataRepository extends JpaRepository<BankData, Integer>{
+public interface BankDataRepository extends JpaRepository<BankData, Integer> {
+
+	BankData findByBankId(Integer bankId);
 
 }

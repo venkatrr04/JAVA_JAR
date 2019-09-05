@@ -32,7 +32,7 @@ public class UpdateAccountController {
 
 	/**
 	 * @param Integer favouriteId, UpdateUpdateAccountRequestDto which includes
-	 *                accountName, accountNumber, bankName, customerId.
+	 *                accountName, accountNumber.
 	 * 
 	 * @return UpdateAccountResponseDto is the output response with status code.
 	 */

@@ -12,14 +12,25 @@ import com.hcl.rubikbank.entity.Customer;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.CustomerRepository;
 import com.hcl.rubikbank.util.RubibankConstants;
-
+/**
+ * @author Venkat . This is the service class for login the customer
+ *
+ */
 @Service
 public class LoginServiceImpl implements LoginService {
 	private static final Logger logger = LoggerFactory.getLogger(LoginServiceImpl.class);
 	@Autowired
 	CustomerRepository customerRepository;
-
+	/**
+	 * This method is use to login the customer
+	 * 
+	 * @param customerId is the input parameter.
+	 * @return LoginResponseDto is the output parameter which contains customerId
+	 *         and message with status code.
+	 * @exception  USER_NOT_FOUND if no user is found
+	 */
 	public LoginResponseDto userLogin(Integer customerId) {
+		
 		LoginResponseDto response = new LoginResponseDto();
 		logger.info("inside the userLogin method..");
 		Optional<Customer> customer = customerRepository.findByCustomerId(customerId);
