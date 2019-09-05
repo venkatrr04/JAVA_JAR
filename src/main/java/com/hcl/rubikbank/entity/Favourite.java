@@ -28,7 +28,7 @@ public class Favourite implements Serializable {
 	private Integer favouriteId;
 	private String accountName;
 	private String accountNumber;
-	private Boolean accountStatus;
+	private String accountStatus;
 	@CreationTimestamp
 	private LocalDate creationDate;
 	private Integer bankId;
