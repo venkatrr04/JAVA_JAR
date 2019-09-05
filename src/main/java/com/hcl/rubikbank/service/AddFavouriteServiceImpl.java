@@ -2,7 +2,6 @@ package com.hcl.rubikbank.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import com.hcl.rubikbank.dto.AddFavouriteRequestDto;
 import com.hcl.rubikbank.dto.AddFavouriteResponseDto;
@@ -22,8 +21,6 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 
 	@Autowired
 	FavouriteRepository favaouriteRepository;
-	@Autowired
-	RestTemplate restTemplate;
 
 	/**
 	 * 
@@ -49,9 +46,7 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 		favourite.setCustomerId(addFavouriteRequestDto.getCustomerId());
 		favaouriteRepository.save(favourite);
 
-		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS );
+		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS);
 	}
-
-	
 
 }

@@ -4,8 +4,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.hcl.rubikbank.dto.UpdateAccountRequestDto;
 import com.hcl.rubikbank.dto.UpdateAccountResponseDto;
@@ -15,7 +13,6 @@ import com.hcl.rubikbank.repository.FavouriteRepository;
 @RunWith(MockitoJUnitRunner.class)
 public class UpdateAccountServiceImplTest {
 	
-	private static final Logger logger = LoggerFactory.getLogger(UpdateAccountServiceImplTest.class);
 	
 	@InjectMocks
 	UpdateAccountServiceImpl updateAccountServiceImpl;
