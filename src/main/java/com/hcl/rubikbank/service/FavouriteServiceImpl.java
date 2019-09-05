@@ -2,6 +2,7 @@ package com.hcl.rubikbank.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,9 +57,9 @@ public class FavouriteServiceImpl implements FavouriteService {
 		favouriteAccounts.stream().forEach(f -> {
 
 			BankData bankData = bankDataRepository.findByBankId(f.getBankId());
-			Customer customer = customerRepository.findByCustomerId(f.getCustomerId());
+			Optional<Customer> customer = customerRepository.findByCustomerId(f.getCustomerId());
 			FavouriteResponseDto favouriteResponseDto = FavouriteResponseDto.builder().accountName(f.getAccountName())
-					.accountNumber(f.getAccountNumber()).bankName(bankData.getBankName()).loginId(customer.getLoginId())
+					.accountNumber(f.getAccountNumber()).bankName(bankData.getBankName()).customerId(customer.get().getCustomerId())
 					.build();
 			favourites.add(favouriteResponseDto);
 

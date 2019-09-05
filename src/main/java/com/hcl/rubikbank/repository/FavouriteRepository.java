@@ -12,5 +12,4 @@ import com.hcl.rubikbank.entity.Favourite;
 public interface FavouriteRepository extends JpaRepository<Favourite, Integer> {
 
 	Page<Favourite> findAll(Pageable pageable);
-
 }
