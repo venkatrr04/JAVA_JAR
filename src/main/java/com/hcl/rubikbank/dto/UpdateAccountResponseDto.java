@@ -9,16 +9,12 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class AddFavouriteRequestDto implements Serializable {
-	/**
+@AllArgsConstructor
+public class UpdateAccountResponseDto implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String accountName;
-	private String accountNumber;
-	private String bankName;
-	private Integer customerId;
-	private Integer bankId;
+
+	private String message;
 }

@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.rubikbank.dto.DeleteAccountResponseDto;
 import com.hcl.rubikbank.service.DeleteAccountService;
-
+/**
+ * @author Venkat . This is the controller class for delete the favourite account
+ *
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
