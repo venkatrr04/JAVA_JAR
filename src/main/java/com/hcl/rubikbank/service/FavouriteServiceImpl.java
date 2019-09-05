@@ -58,7 +58,7 @@ public class FavouriteServiceImpl implements FavouriteService {
 				throw new CommonException(RubibankConstants.BANKDETAILS_NOT_FOUND + f.getBankId());
 			FavouriteResponseDto favouriteResponseDto = FavouriteResponseDto.builder().accountName(f.getAccountName())
 					.accountNumber(f.getAccountNumber()).bankName(bankData.getBankName()).customerId(f.getCustomerId())
-					.build();
+					.favouriteId(f.getFavouriteId()).build();
 			favourites.add(favouriteResponseDto);
 
 		});
