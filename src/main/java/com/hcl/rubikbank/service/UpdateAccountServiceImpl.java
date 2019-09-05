@@ -68,7 +68,6 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 		favouriteRepository.save(favourite.get());
 
 		return new UpdateAccountResponseDto(RubikConstants.EDIT_SUCCESS);
-
 	}
 
 	public ResponseEntity<BankDto> getBankDetails(String bankCode) {
