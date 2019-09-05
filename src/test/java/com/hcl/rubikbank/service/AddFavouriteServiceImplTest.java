@@ -17,6 +17,7 @@ import com.hcl.rubikbank.entity.Favourite;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.FavouriteRepository;
 import com.hcl.rubikbank.util.RubibankConstants;
+import com.hcl.rubikbank.util.SmsSender;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddFavouriteServiceImplTest {
@@ -25,6 +26,9 @@ public class AddFavouriteServiceImplTest {
 
 	@InjectMocks
 	AddFavouriteServiceImpl addFavouriteServiceImpl;
+	
+	@Mock
+	SmsSender smsSender;
 
 	AddFavouriteRequestDto addFavouriteRequestDto;
 	
