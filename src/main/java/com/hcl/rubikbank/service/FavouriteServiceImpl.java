@@ -2,7 +2,6 @@ package com.hcl.rubikbank.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,13 +13,12 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.rubikbank.dto.FavouriteResponseDto;
 import com.hcl.rubikbank.entity.BankData;
-import com.hcl.rubikbank.entity.Customer;
 import com.hcl.rubikbank.entity.Favourite;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.BankDataRepository;
 import com.hcl.rubikbank.repository.CustomerRepository;
 import com.hcl.rubikbank.repository.FavouriteRepository;
-import com.hcl.rubikbank.util.RubikConstants;
+import com.hcl.rubikbank.util.RubibankConstants;
 
 /**
  * @author DeepikaSivarajan . This is the service class for getting
@@ -53,13 +51,13 @@ public class FavouriteServiceImpl implements FavouriteService {
 		Pageable pageable = (Pageable) PageRequest.of(pageCount, 5);
 		Page<Favourite> favouriteAccounts = favouriteRepository.findAll(pageable);
 		if (favouriteAccounts.isEmpty())
-			throw new CommonException(RubikConstants.FAVOURITES_NOT_FOUND);
+			throw new CommonException(RubibankConstants.FAVOURITES_NOT_FOUND);
 		favouriteAccounts.stream().forEach(f -> {
-
 			BankData bankData = bankDataRepository.findByBankId(f.getBankId());
-			Optional<Customer> customer = customerRepository.findByCustomerId(f.getCustomerId());
+			if (bankData.getBankId() == null)
+				throw new CommonException(RubibankConstants.BANKDETAILS_NOT_FOUND + f.getBankId());
 			FavouriteResponseDto favouriteResponseDto = FavouriteResponseDto.builder().accountName(f.getAccountName())
-					.accountNumber(f.getAccountNumber()).bankName(bankData.getBankName()).customerId(customer.get().getCustomerId())
+					.accountNumber(f.getAccountNumber()).bankName(bankData.getBankName()).customerId(f.getCustomerId())
 					.build();
 			favourites.add(favouriteResponseDto);
 
