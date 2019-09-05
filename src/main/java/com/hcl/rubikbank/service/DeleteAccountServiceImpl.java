@@ -19,7 +19,14 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
 	@Autowired
 	FavouriteRepository favouriteRepository;
 	private static final Logger logger = LoggerFactory.getLogger(DeleteAccountServiceImpl.class);
-
+	/**
+	 * This method is use to delete (which is soft deletion)the favourite account number
+	 * 
+	 * @param customerId and  favouriteId are the input parameters.
+	 * @return DeleteAccountResponseDto is the output parameter which contains
+	 *         and message with status code.
+	 * @exception  NO_CUSTOMER_FOUND_TO_DELETE if no account is found
+	 */
 	@Override
 	public DeleteAccountResponseDto deleteAccounts(Integer favouriteId, Integer customerId) {
 		DeleteAccountResponseDto deleteAccountResponseDto = new DeleteAccountResponseDto();
@@ -29,8 +36,7 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
 			throw new CommonException(RubibankConstants.NO_CUSTOMER_FOUND_TO_DELETE);
 		favourite.get().setAccountStatus("0");
 		favouriteRepository.save(favourite.get());
-		deleteAccountResponseDto.setMessage("Account deleted successfully..");
-
+		deleteAccountResponseDto.setMessage("Account deleted successfully from favorite accounts list");
 		return deleteAccountResponseDto;
 	}
 
