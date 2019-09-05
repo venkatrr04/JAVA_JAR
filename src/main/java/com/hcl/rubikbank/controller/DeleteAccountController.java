@@ -21,12 +21,9 @@ import com.hcl.rubikbank.service.DeleteAccountService;
 @RequestMapping("/api")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 public class DeleteAccountController {
-
 	private static final Logger logger = LoggerFactory.getLogger(DeleteAccountController.class);
-
 	@Autowired
 	DeleteAccountService deleteAccountService;
-
 	@DeleteMapping("/favourite/{favouriteId}/{customerId}")
 	public ResponseEntity<DeleteAccountResponseDto> deleteAccount(@PathVariable("favouriteId") Integer favouriteId,
 			@PathVariable("customerId") Integer customerId) {
