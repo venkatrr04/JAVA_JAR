@@ -34,6 +34,7 @@ public class DeleteAccountServiceImpl implements DeleteAccountService {
 		Optional<Favourite> favourite = favouriteRepository.findByFavouriteIdAndCustomerId(favouriteId, customerId);
 		if (!favourite.isPresent())
 			throw new CommonException(RubibankConstants.NO_CUSTOMER_FOUND_TO_DELETE);
+		logger.info("inside the deleteAccounts method after condition check...");
 		favourite.get().setAccountStatus("0");
 		favouriteRepository.save(favourite.get());
 		deleteAccountResponseDto.setMessage("Account deleted successfully from favorite accounts list");
