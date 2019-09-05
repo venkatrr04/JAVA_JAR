@@ -16,7 +16,6 @@ import com.hcl.rubikbank.entity.BankData;
 import com.hcl.rubikbank.entity.Favourite;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.BankDataRepository;
-import com.hcl.rubikbank.repository.CustomerRepository;
 import com.hcl.rubikbank.repository.FavouriteRepository;
 import com.hcl.rubikbank.util.RubibankConstants;
 
@@ -33,8 +32,6 @@ public class FavouriteServiceImpl implements FavouriteService {
 	FavouriteRepository favouriteRepository;
 	@Autowired
 	BankDataRepository bankDataRepository;
-	@Autowired
-	CustomerRepository customerRepository;
 
 	/**
 	 * This method is intended to display favorite accounts

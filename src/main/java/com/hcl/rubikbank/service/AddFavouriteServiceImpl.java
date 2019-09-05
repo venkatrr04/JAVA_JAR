@@ -10,6 +10,7 @@ import com.hcl.rubikbank.entity.Favourite;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.FavouriteRepository;
 import com.hcl.rubikbank.util.RubibankConstants;
+import com.hcl.rubikbank.util.SmsSender;
 
 /**
  * 
@@ -24,7 +25,9 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 	FavouriteRepository favaouriteRepository;
 	@Autowired
 	RestTemplate restTemplate;
-
+	@Autowired
+	SmsSender smsSender;
+	
 	/**
 	 * 
 	 * This method intended to adding the favourite details of customer
@@ -48,10 +51,10 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 		favourite.setBankId(addFavouriteRequestDto.getBankId());
 		favourite.setCustomerId(addFavouriteRequestDto.getCustomerId());
 		favaouriteRepository.save(favourite);
-
+		smsSender.sendSms(favourite);
 		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS );
 	}
-
+	
 	
 
 }
