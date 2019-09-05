@@ -36,6 +36,7 @@ public class LoginServiceImpl implements LoginService {
 		Optional<Customer> customer = customerRepository.findByCustomerId(customerId);
 		if (!customer.isPresent())
 			throw new CommonException(RubibankConstants.CUSTOMER_ID_NOT_FOUND);
+		logger.info("inside the userLogin method before condition check..");
 		response.setCustomerId(customer.get().getCustomerId());
 		response.setMessage("Customer Login success");
 		return response;

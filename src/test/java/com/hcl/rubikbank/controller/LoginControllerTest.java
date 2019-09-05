@@ -20,7 +20,6 @@ import com.hcl.rubikbank.service.LoginService;
 @RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
 public class LoginControllerTest {
-
 	@InjectMocks
 	LoginController loginController;
 	@Mock
