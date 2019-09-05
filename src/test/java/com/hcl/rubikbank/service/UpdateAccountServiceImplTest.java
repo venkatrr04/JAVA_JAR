@@ -79,7 +79,7 @@ public class UpdateAccountServiceImplTest {
 		logger.info("in test update account");
 		Mockito.when(favouriteRepository.findByFavouriteId(Mockito.anyInt())).thenReturn(Optional.of(favourite));
 		UpdateAccountResponseDto response = updateAccountServiceImpl.updateAccount(1, updateAccountRequestDto);
-		assertEquals("edit successful", response.getMessage());
+		assertEquals("Account details successfully updated in favorite accounts list.", response.getMessage());
 	}
 	
 	@Test(expected = CommonException.class)
