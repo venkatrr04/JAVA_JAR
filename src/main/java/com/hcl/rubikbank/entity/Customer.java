@@ -18,12 +18,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer implements Serializable {
+	
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer customerId;
-	private String loginId;
 	private String customerName;
 	private String mobileNumber;
 
