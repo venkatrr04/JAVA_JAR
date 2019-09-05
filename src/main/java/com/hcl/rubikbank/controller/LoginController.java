@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.rubikbank.dto.LoginResponseDto;
 import com.hcl.rubikbank.service.LoginService;
-
+/**
+ * @author Venkat . This is the controller class for login the customer
+ *
+ */
 @RestController
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")

@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends RuntimeException {
+
+	private static final long serialVersionUID = 1L;
 
 	@ExceptionHandler(CommonException.class)
 	public ResponseEntity<ErrorResponse> commonException(Exception e) {
