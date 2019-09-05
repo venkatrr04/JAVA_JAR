@@ -19,5 +19,6 @@ public class FavouriteResponseDto implements Serializable {
 	private String accountNumber;
 	private String bankName;
 	private Integer customerId;
+	private Integer favouriteId;
 
 }
