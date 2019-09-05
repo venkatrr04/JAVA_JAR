@@ -40,17 +40,25 @@ public class FavouriteServiceImplTest {
 	List<FavouriteResponseDto> responseList;
 	FavouriteResponseDto favouriteResponseDto;
 	Page<Favourite> favourite;
+	Favourite favData; 
 	List<Favourite> favouriteList;
 	BankData bankData;
 	Pageable pageable;
 
 	@Before
 	public void setUp() {
+		favData = new Favourite();
 		responseList = new ArrayList<>();
 		favouriteResponseDto = new FavouriteResponseDto();
-		favouriteList = new ArrayList<>();
+		favouriteList = new ArrayList<Favourite>();
+		favData.setAccountName("Bridge Foundation");
+		favData.setCustomerId(1);
+		favData.setFavouriteId(1);
+		favData.setBankId(1);
+		favouriteList.add(favData);
+		
 		favourite = new PageImpl<Favourite>(favouriteList);
-
+		
 		bankData = new BankData();
 		pageable = (Pageable) PageRequest.of(0, 5);
 		bankData.setBankCode("1235");
@@ -60,12 +68,6 @@ public class FavouriteServiceImplTest {
 		favouriteResponseDto.setBankName("Tokio Bank");
 		favouriteResponseDto.setCustomerId(1);
 		responseList.add(favouriteResponseDto);
-
-		((BankData) favourite).setBankId(1);
-		((FavouriteResponseDto) favourite).setFavouriteId(1);
-		((FavouriteResponseDto) favourite).setCustomerId(1);
-		((FavouriteResponseDto) favourite).setAccountName("Bridge Foundation");
-		favouriteList.add((Favourite) favourite);
 
 	}
 
