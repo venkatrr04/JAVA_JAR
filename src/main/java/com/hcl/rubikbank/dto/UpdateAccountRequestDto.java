@@ -19,5 +19,6 @@ public class UpdateAccountRequestDto implements Serializable{
 	
 	private String accountName;
 	private String accountNumber;
+	private Integer bankId;
 
 }

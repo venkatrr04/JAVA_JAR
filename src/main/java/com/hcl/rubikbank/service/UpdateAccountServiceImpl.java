@@ -65,6 +65,7 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 
 		favourite.get().setAccountName(updateAccountRequestDto.getAccountName());
 		favourite.get().setAccountNumber(bankNumber);
+		favourite.get().setBankId(updateAccountRequestDto.getBankId());
 		favouriteRepository.save(favourite.get());
 
 		return new UpdateAccountResponseDto(RubikConstants.EDIT_SUCCESS);

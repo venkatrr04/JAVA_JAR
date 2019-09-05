@@ -14,20 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hcl.rubikbank.dto.DeleteAccountResponseDto;
 import com.hcl.rubikbank.service.DeleteAccountService;
 /**
- * @author Venkat . This is the controller class for delete the favourite account
+ * @author Venkat. This is the controller class for delete the favourite account
  *
  */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 public class DeleteAccountController {
-
 	private static final Logger logger = LoggerFactory.getLogger(DeleteAccountController.class);
-
 	@Autowired
 	DeleteAccountService deleteAccountService;
-
-	@DeleteMapping("/login/{favouriteId}/{customerId}")
+	@DeleteMapping("/favourite/{favouriteId}/{customerId}")
 	public ResponseEntity<DeleteAccountResponseDto> deleteAccount(@PathVariable("favouriteId") Integer favouriteId,
 			@PathVariable("customerId") Integer customerId) {
 		logger.info("inside the deleteAccount method in controller..");
