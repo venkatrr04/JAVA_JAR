@@ -20,4 +20,5 @@ public class AddFavouriteRequestDto implements Serializable {
 	private String accountNumber;
 	private String bankName;
 	private Integer customerId;
+	private Integer bankId;
 }

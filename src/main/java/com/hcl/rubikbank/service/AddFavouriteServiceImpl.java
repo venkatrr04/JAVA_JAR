@@ -50,19 +50,20 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 		String bankCodeStr = bankNumber.substring(4, 8);
 		if (bankNumber.length() != 20)
 			throw new CommonException(RubibankConstants.ERROR_IBAN_NUMBER);
-		ResponseEntity<BankDto> bankDetails = getBankDetails(bankCodeStr);
-		if (!bankDetails.getBody().getBankName().equalsIgnoreCase(addFavouriteRequestDto.getBankName()))
-			throw new CommonException(RubibankConstants.ERROR_BANK_NAME_EXIST);
+//		ResponseEntity<BankDto> bankDetails = getBankDetails(bankCodeStr);
+//		if (!bankDetails.getBody().getBankName().equalsIgnoreCase(addFavouriteRequestDto.getBankName()))
+//			throw new CommonException(RubibankConstants.ERROR_BANK_NAME_EXIST);
 
 		Favourite favourite = new Favourite();
 		favourite.setAccountName(addFavouriteRequestDto.getAccountName());
 		favourite.setAccountNumber(bankNumber);
 		favourite.setAccountStatus("1");
-		favourite.setBankId(bankDetails.getBody().getBankId());
+//		favourite.setBankId(bankDetails.getBody().getBankId());
+		favourite.setBankId(addFavouriteRequestDto.getBankId());
 		favourite.setCustomerId(addFavouriteRequestDto.getCustomerId());
 		favaouriteRepository.save(favourite);
 
-		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS + bankDetails.getBody().getBankName());
+		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS );
 	}
 
 	public ResponseEntity<BankDto> getBankDetails(String bankCode) {
