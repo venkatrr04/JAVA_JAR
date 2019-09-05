@@ -21,15 +21,14 @@ import com.hcl.rubikbank.service.LoginService;
 @CrossOrigin(allowedHeaders = { "*", "*/" }, origins = { "*", "*/" })
 @RequestMapping("/api")
 public class LoginController {
-@Autowired LoginService loginService;
-private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	@Autowired
+	LoginService loginService;
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@PostMapping("/login/{customerId}")
-public ResponseEntity<LoginResponseDto> login(@PathVariable ("customerId") Integer customerId) {
-	logger.info("inside the login Controller method");
-	return new ResponseEntity<>(loginService.userLogin(customerId), HttpStatus.OK);
-	
-	
-	
-}
+	public ResponseEntity<LoginResponseDto> login(@PathVariable("customerId") Integer customerId) {
+		logger.info("inside the login Controller method");
+		return new ResponseEntity<>(loginService.userLogin(customerId), HttpStatus.OK);
+
+	}
 }
