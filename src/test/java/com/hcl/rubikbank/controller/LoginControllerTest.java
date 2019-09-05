@@ -14,13 +14,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hcl.rubikbank.dto.LoginResponseDto;
 import com.hcl.rubikbank.service.LoginService;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
 public class LoginControllerTest {
-
 	@InjectMocks
 	LoginController loginController;
 	@Mock
@@ -43,4 +43,14 @@ public class LoginControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/login/{customerId}", 1).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
+	
+	public static String asJsonString(final Object obj) {
+		try {
+			return new ObjectMapper().writeValueAsString(obj);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
 }

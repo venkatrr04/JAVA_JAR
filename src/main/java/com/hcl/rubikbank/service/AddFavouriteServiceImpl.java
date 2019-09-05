@@ -1,5 +1,7 @@
 package com.hcl.rubikbank.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -21,13 +23,15 @@ import com.hcl.rubikbank.util.SmsSender;
 @Service
 public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 
+	private static final Logger logger = LoggerFactory.getLogger(AddFavouriteServiceImpl.class);
+
 	@Autowired
 	FavouriteRepository favaouriteRepository;
 	@Autowired
 	RestTemplate restTemplate;
 	@Autowired
 	SmsSender smsSender;
-	
+
 	/**
 	 * 
 	 * This method intended to adding the favourite details of customer
@@ -39,6 +43,7 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 
 	@Override
 	public AddFavouriteResponseDto addFaourite(AddFavouriteRequestDto addFavouriteRequestDto) {
+		logger.info("Enter in add service impl");
 
 		String bankNumber = addFavouriteRequestDto.getAccountNumber();
 		if (bankNumber.length() != 20)
@@ -52,9 +57,7 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 		favourite.setCustomerId(addFavouriteRequestDto.getCustomerId());
 		favaouriteRepository.save(favourite);
 		smsSender.sendSms(favourite);
-		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS );
+		return new AddFavouriteResponseDto(RubibankConstants.ADD_SUCCESS);
 	}
-	
-	
 
 }
