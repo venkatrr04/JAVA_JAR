@@ -1,5 +1,7 @@
 package com.hcl.rubikbank.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import com.hcl.rubikbank.util.RubibankConstants;
  */
 @Service
 public class AddFavouriteServiceImpl implements AddFavouriteServcie {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AddFavouriteServiceImpl.class);
 
 	@Autowired
 	FavouriteRepository favaouriteRepository;
@@ -33,6 +37,7 @@ public class AddFavouriteServiceImpl implements AddFavouriteServcie {
 
 	@Override
 	public AddFavouriteResponseDto addFaourite(AddFavouriteRequestDto addFavouriteRequestDto) {
+		logger.info("Enter in add service impl");
 
 		String bankNumber = addFavouriteRequestDto.getAccountNumber();
 		if (bankNumber.length() != 20)
