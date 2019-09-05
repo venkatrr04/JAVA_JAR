@@ -34,7 +34,8 @@ public class UpdateAccountController {
 	 * @param Integer favouriteId, UpdateUpdateAccountRequestDto which includes
 	 *                accountName, accountNumber.
 	 * 
-	 * @return UpdateAccountResponseDto is the output response with status code.
+	 * @return UpdateAccountResponseDto is the output response which includes
+	 *         message with status code.
 	 */
 	@PutMapping("/favourite/{favouriteId}")
 	public ResponseEntity<UpdateAccountResponseDto> updateAccount(@PathVariable Integer favouriteId,

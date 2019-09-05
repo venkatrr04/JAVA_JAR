@@ -12,7 +12,7 @@ public class RubikConstants {
 	public static final String ERROR_BANK_NOT_FOUND = "No bank account found";
 	public static final String ADD_SUCCESS = "Added succesffully";
 	public static final String ERROR_ACCOUNT_NAME_NOT_FOUND = "Account name doesn't exists";
-	public static final String EDIT_SUCCESS = "edit successful";
+	public static final String EDIT_SUCCESS = "Account details successfully updated in favorite accounts list.";
 	public static final String CUSTOMER_ID_NOT_FOUND = "Invalid Customer Id.Please try again.";
 	public static final String BANK_DETAILS_URL = "http://localhost:9090/bankdetails/api/bankDetails/";
 	public static final String ERROR_IBAN_NUMBER="IBAN/Account Number should be 20 characters only";
