@@ -23,6 +23,7 @@ import com.hcl.rubikbank.entity.Favourite;
 import com.hcl.rubikbank.exception.CommonException;
 import com.hcl.rubikbank.repository.BankDataRepository;
 import com.hcl.rubikbank.repository.FavouriteRepository;
+import com.hcl.rubikbank.util.RubibankConstants;
 import com.hcl.rubikbank.util.RubikConstants;
 
 /**
@@ -59,20 +60,52 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 		Optional<Favourite> favourite = favouriteRepository.findByFavouriteId(favouriteId);
 		if(!favourite.isPresent())
 			throw new CommonException(RubikConstants.ERROR_NO_FAVOURITE_ACCOUNT);
-		Optional<BankData> bankdata = bankDataRepository.findById(favourite.get().getBankId());
-		if(!bankdata.isPresent())
+		logger.trace("no favourite account found");
+		
+		Optional<BankData> bankData = bankDataRepository.findById(favourite.get().getBankId());
+		if(!bankData.isPresent())
 			throw new CommonException(RubikConstants.ERROR_BANK_NOT_FOUND);
+		
+		logger.trace("no favourite account found");
+		String bankNumber = updateAccountRequestDto.getAccountNumber();
+		String bankCodeStr = bankNumber.substring(4, 8);
+		if (bankNumber.length() != 20)
+			throw new CommonException(RubibankConstants.ERROR_IBAN_NUMBER);
+		ResponseEntity<BankDto> bankDetails = getBankDetails(bankCodeStr);
+		
+		
+		if (!bankDetails.getBody().getBankName().equalsIgnoreCase(updateAccountRequestDto.getBankName()))
+			throw new CommonException(RubibankConstants.ERROR_BANK_NAME_EXIST);
+		
 		if(!updateAccountRequestDto.getAccountName().equalsIgnoreCase(favourite.get().getAccountName()))
-		{
-		throw new CommonException(RubikConstants.ERROR_ACCOUNT_NAME_NOT_FOUND);
-		}
-		if(!updateAccountRequestDto.getAccountNumber().equalsIgnoreCase(favourite.get().getAccountNumber()))
-		{	throw new  CommonException(RubikConstants.ERROR_ACCOUNT_NAME_NOT_FOUND);
-		}
+			{
+			throw new CommonException(RubikConstants.ERROR_ACCOUNT_NAME_NOT_FOUND);
+			}
 		
-		ResponseEntity<BankDto> bankDetails = getBankDetails(updateAccountRequestDto.getAccountNumber());
-		return new UpdateAccountResponseDto(RubikConstants.ADD_SUCCESS + bankDetails.getBody().getBankName());
+		favourite.get().setAccountName(updateAccountRequestDto.getAccountName());
+		favourite.get().setAccountNumber(bankNumber);
+		bankData.get().setBankName(updateAccountRequestDto.getBankName());
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//		
+//		if(!updateAccountRequestDto.getAccountNumber().equalsIgnoreCase(favourite.get().getAccountNumber()))
+//		{	throw new  CommonException(RubikConstants.ERROR_ACCOUNT_NAME_NOT_FOUND);
+//		}
+		
+		
+		
+		
+		return new UpdateAccountResponseDto(RubikConstants.EDIT_SUCCESS + bankDetails.getBody().getBankName());
 		
 	}
 
@@ -84,7 +117,7 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 	headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 	HttpEntity<String> entity = new HttpEntity<>(headers);
 
-	return new ResponseEntity<BankDto>(restTemplate
+	return new ResponseEntity<>(restTemplate
 	.exchange(RubikConstants.BANK_DETAILS_URL + bankCode, HttpMethod.GET, entity, BankDto.class)
 	.getBody(), HttpStatus.OK);
 

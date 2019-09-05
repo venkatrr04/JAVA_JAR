@@ -9,13 +9,13 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class RubikbankApplication {
 	
-	@Autowired
-	RestTemplate resTemplate;
+//	@Autowired
+//	RestTemplate resTemplate;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RubikbankApplication.class, args);
 	}
-
+	
 	@Bean
 	public RestTemplate restTemplate() {
 	return new RestTemplate();

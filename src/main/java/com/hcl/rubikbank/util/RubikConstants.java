@@ -10,8 +10,11 @@ public class RubikConstants {
 	public static final String ERROR_BANK_CODE_EXIST = "Bank code not exist";
 	public static final String ERROR_NO_FAVOURITE_ACCOUNT = "No favourite account exists";
 	public static final String ERROR_BANK_NOT_FOUND = "No bank account found";
-	public static final int ADD_SUCCESS = 1;
-	public static final String BANK_DETAILS_URL = "https://localhost:9090/bankdetails/api/bankDetails/{bankCode}";
+	public static final String ADD_SUCCESS = "Added succesffully";
 	public static final String ERROR_ACCOUNT_NAME_NOT_FOUND = "Account name doesn't exists";
 	public static final String EDIT_SUCCESS = "edit successful";
+	public static final String CUSTOMER_ID_NOT_FOUND = "Invalid Customer Id.Please try again.";
+	public static final String BANK_DETAILS_URL = "http://localhost:9090/bankdetails/api/bankDetails/";
+	public static final String ERROR_IBAN_NUMBER="IBAN/Account Number should be 20 characters only";
+	public static final String ERROR_BANK_NAME_EXIST="Bank not exist";
 }
