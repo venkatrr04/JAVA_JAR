@@ -34,13 +34,13 @@ public class BankCodeController {
 	public ResponseEntity<BankDto> getBankDetails(
 			@PathVariable String bankCode) {
 		logger.info("inside the bankDetails Controller method");
-		
+		String bankCodeStr = bankCode.substring(4, 8);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
 		return new ResponseEntity<BankDto>(restTemplate
-				.exchange(RubibankConstants.BANK_DETAILS_URL + bankCode, HttpMethod.GET, entity, BankDto.class)
+				.exchange(RubibankConstants.BANK_DETAILS_URL + bankCodeStr, HttpMethod.GET, entity, BankDto.class)
 				.getBody(), HttpStatus.OK);
 
 	}
