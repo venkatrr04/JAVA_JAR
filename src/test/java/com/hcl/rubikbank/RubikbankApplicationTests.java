@@ -11,6 +11,6 @@ public class RubikbankApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		
 	}
-
 }

@@ -1,21 +1,13 @@
 package com.hcl.rubikbank.service;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.hcl.rubikbank.dto.BankDto;
 import com.hcl.rubikbank.dto.UpdateAccountRequestDto;
 import com.hcl.rubikbank.dto.UpdateAccountResponseDto;
 import com.hcl.rubikbank.entity.Favourite;
@@ -58,6 +50,10 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 		if (!favourite.isPresent())
 			throw new CommonException(RubikConstants.ERROR_NO_FAVOURITE_ACCOUNT);
 		logger.trace("no favourite account found");
+		
+		if (!validateCustomerName(updateAccountRequestDto.getAccountName()))
+			throw new CommonException(RubikConstants.ERROR_NAME);
+
 
 		String bankNumber = updateAccountRequestDto.getAccountNumber();
 		if (bankNumber.length() != 20)
@@ -70,16 +66,10 @@ public class UpdateAccountServiceImpl implements UpdateAccountService {
 
 		return new UpdateAccountResponseDto(RubikConstants.EDIT_SUCCESS);
 	}
-
-	public ResponseEntity<BankDto> getBankDetails(String bankCode) {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		HttpEntity<String> entity = new HttpEntity<>(headers);
-
-		return new ResponseEntity<>(restTemplate
-				.exchange(RubikConstants.BANK_DETAILS_URL + bankCode, HttpMethod.GET, entity, BankDto.class).getBody(),
-				HttpStatus.OK);
-
+	
+	private boolean validateCustomerName(String customerName) {
+		String name = ("^[a-zA-Z0-9,-]*$");
+		return customerName.matches(name);
 	}
 
 }

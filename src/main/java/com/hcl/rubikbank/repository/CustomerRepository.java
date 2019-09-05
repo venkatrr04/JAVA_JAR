@@ -9,8 +9,5 @@ import com.hcl.rubikbank.entity.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-
-	//Optional<Customer> findByCustomerId(Integer customerId);
-
 	 Optional<Customer> findByCustomerId(Integer customerId);
 }

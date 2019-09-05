@@ -39,7 +39,7 @@ public class BankCodeController {
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity<String> entity = new HttpEntity<>(headers);
 
-		return new ResponseEntity<BankDto>(restTemplate
+		return new ResponseEntity<>(restTemplate
 				.exchange(RubibankConstants.BANK_DETAILS_URL + bankCodeStr, HttpMethod.GET, entity, BankDto.class)
 				.getBody(), HttpStatus.OK);
 

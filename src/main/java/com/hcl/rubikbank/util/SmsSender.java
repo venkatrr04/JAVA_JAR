@@ -17,7 +17,9 @@ import com.twilio.type.PhoneNumber;
 @Component
 public class SmsSender {
 	private static Logger logger = LoggerFactory.getLogger(SmsSender.class);
-	// Find your Account Sid and Auth Token at twilio.com/console
+	/*
+	Find your Account Sid and Auth Token at twilio.com/console
+	*/ 
 	public static final String ACCOUNT_SID = "AC50dbb981f0acb261c192b204b3e3a4fa";
 	public static final String AUTH_TOKEN = "c89b4c138e226b10da12d8e957136356";
 	String returnString = "SMS success";

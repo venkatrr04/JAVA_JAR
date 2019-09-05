@@ -31,5 +31,4 @@ public class DeleteAccountController {
 		return new ResponseEntity<>(deleteAccountService.deleteAccounts(favouriteId, customerId), HttpStatus.OK);
 
 	}
-
 }

@@ -19,5 +19,6 @@ public class RubikConstants {
 	public static final String ERROR_BANK_NAME_EXIST="Bank not exist";
 
 	public static final String FAVOURITES_NOT_FOUND = "No Favorite accounts are available";
+	public static final String ERROR_NAME = "Only Letters/Numbers and 2 Special Characters[' and -] are allowed as valid inputs.";
 
 }

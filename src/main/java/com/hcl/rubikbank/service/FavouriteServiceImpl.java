@@ -45,7 +45,7 @@ public class FavouriteServiceImpl implements FavouriteService {
 	public List<FavouriteResponseDto> getFavoriteAccounts(Integer pageCount) {
 		logger.info("favorite accounts in service");
 		List<FavouriteResponseDto> favourites = new ArrayList<>();
-		Pageable pageable = (Pageable) PageRequest.of(pageCount, 5);
+		Pageable pageable =  PageRequest.of(pageCount, 5);
 		Page<Favourite> favouriteAccounts = favouriteRepository.findAll(pageable);
 		if (favouriteAccounts.isEmpty())
 			throw new CommonException(RubibankConstants.FAVOURITES_NOT_FOUND);
